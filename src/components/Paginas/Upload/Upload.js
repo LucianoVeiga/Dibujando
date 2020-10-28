@@ -53,9 +53,9 @@ const Upload = () => {
                   descripcion: descripcion,
                   categoria: categoria,
                   sumapuntuaciones: null,
-                  puntuacion: null,
+                  puntuacion: 0,
                   votantes: [],
-                  cantidadVotantes: null,
+                  cantidadVotantes: 0,
                   fecha: fecha
                 })
                 .then(docRef => {

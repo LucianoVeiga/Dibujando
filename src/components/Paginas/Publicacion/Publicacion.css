@@ -2,10 +2,13 @@
     background-color: rgb(238, 238, 238);
     border-radius: 30px;
     padding: 4%;
+    margin-bottom: 10%;
+    color: rgb(66, 66, 66);
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 #puntuacion {
-    width: 65%;
+    width: 67%;
     font-size: 15px;
     padding: 10px;
 }
@@ -30,8 +33,44 @@
     padding: 10px;
 }
 
-#puntua {
+.puntua {
     float: right;
-    float: bottom;
-    width: 27%;
+}
+
+#p {
+    display: flex;
+    width: 250px;
+}
+
+#imagen {
+    width: 300px;
+    height: 300px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 1);
+    border-radius: 2%;
+}
+
+#content {
+    display: flex;
+}
+
+.datos {
+    margin-left: 2%;
+    width: 100%;
+}
+
+#categ {
+    color: rgb(100, 100, 100);
+}
+
+#letras {
+    font-size: 15px;
+    font-weight: bold;
+}
+
+#link {
+    margin-top: 2%;
+}
+
+#puntaje {
+    margin-top: 170px;
 }

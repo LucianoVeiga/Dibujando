@@ -16,6 +16,7 @@
     "react-confirm-alert": "^2.6.2",
     "react-dom": "^16.13.1",
     "react-icons": "^3.11.0",
+    "react-redirect": "^1.0.0",
     "react-redux-firebase": "^3.7.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.3",
