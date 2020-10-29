@@ -18,7 +18,6 @@ body {
   align-items: center;
   text-align: center;
   margin-top: -10%;
-  margin-bottom: -10%;
 }
 
 .fina {
@@ -50,11 +49,10 @@ body {
 .container > div {
   position: relative;
   width: 100%;
-  height: 200px;
 }
 
 .cuadrado {
-  position: absolute;
+  display: flex;
   width: 100%;
   height: 200px;
   border: 1px solid;
@@ -74,16 +72,16 @@ body {
   cursor: pointer;
 }
 
-.cuadrado a {
-  width: 200px;
-  height: 200px;
-}
-
 .vistapreviaej {
   background-color: #f8f8f8;
   width: 200px;
   height: 200px;
   border-right: 1px solid rgba(0, 0, 0, 0.5);
+}
+
+.c {
+  display: flex;
+  padding: 2%;
 }
 
 .form-container {
@@ -154,4 +152,18 @@ input {
   border-radius: 5px;
   outline: none;
   width: 100%;
+}
+
+.datos {
+  margin-left: 2%;
+  width: 100%;
+}
+
+#categ {
+  color: rgb(100, 100, 100);
+}
+
+#letras {
+  font-size: 15px;
+  font-weight: bold;
 }

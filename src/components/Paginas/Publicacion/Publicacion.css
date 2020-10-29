@@ -39,7 +39,7 @@
 
 #p {
     display: flex;
-    width: 250px;
+    width: 255px;
 }
 
 #imagen {
@@ -51,20 +51,6 @@
 
 #content {
     display: flex;
-}
-
-.datos {
-    margin-left: 2%;
-    width: 100%;
-}
-
-#categ {
-    color: rgb(100, 100, 100);
-}
-
-#letras {
-    font-size: 15px;
-    font-weight: bold;
 }
 
 #link {

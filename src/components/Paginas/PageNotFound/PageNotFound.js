@@ -2,12 +2,14 @@ import React from 'react';
 
 import '../Upload/Upload.css';
 
-function PageNotFound() {
-    return (
-        <div>
-            <h1 className="contenido">PAGE NOT FOUND</h1>
-        </div>
-    );
+class PageNotFound extends React.Component {
+    render() {
+        return (
+            <div>
+                <h1 className="contenido">PAGE NOT FOUND</h1>
+            </div>
+        );
+    }
   }
 
   export default PageNotFound;

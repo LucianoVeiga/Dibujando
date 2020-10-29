@@ -52,7 +52,7 @@ const Upload = () => {
                   imagenURL: url,
                   descripcion: descripcion,
                   categoria: categoria,
-                  sumapuntuaciones: null,
+                  sumapuntuaciones: 0,
                   puntuacion: 0,
                   votantes: [],
                   cantidadVotantes: 0,

@@ -1,4 +1,4 @@
-import React, { useCallback, useState, useContext } from "react";
+import React, { useState, useContext } from "react";
 import { withRouter, Redirect } from "react-router";
 import app from "../../../base";
 import { firestore } from "../../../base";
@@ -18,7 +18,7 @@ const SignUp = ({ history }) => {
       analytics.logEvent('login', { setUser });
     };
 
-    const handleSignUp = useCallback(async event => {
+    const handleSignUp = (async event => {
       event.preventDefault();
       const { email, password } = user;
       try {
@@ -77,7 +77,7 @@ const SignUp = ({ history }) => {
             </div>
             <br />
             <div className="opcion">
-              <input value="Crear" className="botones" type="submit" />
+              <button className="botones" type="submit">Crear</button>
             </div>
           </form>
           <div className="opcion">

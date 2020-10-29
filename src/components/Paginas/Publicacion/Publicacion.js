@@ -7,15 +7,14 @@ import SideBar from '../../SideBar/SideBar.js';
 import '../../../App.scss';
 import './Publicacion.css';
 
-let publicaciones = firestore.collection('Publicaciones');
-let usuarios = firestore.collection('Usuarios');
+const publicaciones = firestore.collection('Publicaciones');
+const usuarios = firestore.collection('Usuarios');
 
 class Publicacion extends React.Component {
 
   constructor(props) {
     super(props);
     this.puntuar = this.puntuar.bind(this);
-    this.componentDidMount = this.componentDidMount.bind(this);
   }
 
   usuario;
@@ -32,6 +31,9 @@ class Publicacion extends React.Component {
   componentDidMount() {
     const urlParams = new URLSearchParams(this.props.location.search);
     this.id = urlParams.get('id');
+    usuarios.doc(app.auth().currentUser.uid).get().then(doc =>{
+      this.usuario = doc.data().nombre + " " + doc.data().apellido;
+    })
     publicaciones.doc(this.id).get().then(doc =>{
       this.pubusuario = doc.data().usuario;
       this.pubdescripcion = doc.data().descripcion;
@@ -42,40 +44,45 @@ class Publicacion extends React.Component {
       this.pubcantvotantes = doc.data().cantidadVotantes;
       this.pubfecha = doc.data().fecha;
       this.setState({});
-    })
-    if(this.pubcantvotantes > 0) {
       for(let i = 0; i < this.pubcantvotantes; i ++) {
+        console.log(this.pubvotantes[i]);
         if(this.pubvotantes[i] === this.usuario) {
-          document.getElementsByClassName('titpuntua').hidden = true;
+          document.getElementById('titpuntua').style.visibility = "hidden";
           document.getElementById('puntuar').innerHTML = 'Ya puntuaste esta publicación';
           document.getElementById('puntuar').className = "deshabilitado";
           document.getElementById('puntuacion').style.visibility = "hidden";
         }
       }
-    }
+    })
   }
 
   puntuar() {
-    this.pubcantvotantes = this.pubcantvotantes + 1;
-    document.getElementsByClassName('titpuntua').hidden = true;
-    document.getElementById('puntuar').innerHTML = '¡Gracias por puntuar!';
-    document.getElementById('puntuar').className = "deshabilitado";
-    document.getElementById('puntuacion').style.visibility = "hidden";
-    const voto = document.getElementById('puntuacion');
-    usuarios.doc(app.auth().currentUser.uid).get().then(doc =>{
-      this.usuario = doc.data().nombre + " " + doc.data().apellido;
-    })
-    publicaciones.doc(this.id).get().then(doc =>{
-      doc.data().votantes.push(this.usuario);
-      doc.data().sumapuntuaciones = doc.data().sumapuntuaciones + voto;
-      doc.data().puntuacion = doc.data().sumapuntuaciones / this.pubcantvotantes;
-      doc.data().scantidadVotantes = this.pubcantvotantes;
-    })
+    const votacion = document.getElementById('puntuacion').value * 1;
+    if(votacion > 0 && votacion < 11) {
+      this.pubcantvotantes = this.pubcantvotantes + 1;
+      document.getElementById('titpuntua').style.visibility = "hidden";
+      document.getElementById('puntuar').innerHTML = '¡Gracias por puntuar!';
+      document.getElementById('puntuar').className = "deshabilitado";
+      document.getElementById('puntuacion').style.visibility = "hidden";
+      let suma;
+      let vot;
+      publicaciones.doc(this.id).get().then(doc => {
+        suma = doc.data().sumapuntuaciones;
+        vot = doc.data().votantes;
+        vot.push(this.usuario);
+        publicaciones.doc(this.id).update({
+          votantes: vot,
+          sumapuntuaciones: suma + votacion,
+          puntuacion: (suma + votacion) / this.pubcantvotantes,
+          cantidadVotantes: this.pubcantvotantes
+        })
+      })
+    }
   }
     
   render() {
     return (
-      <div>
+      <>
         <div className="arriba">
           <TopBar />
         </div>
@@ -101,27 +108,15 @@ class Publicacion extends React.Component {
             </div>
             <a href={this.pubimagen}><button className="botones" id="link">Ver imagen completa</button></a>
             <div className="puntua">
-              <label className="titpuntua">¡Puntuá esta imagen!</label>
+              <label className="titpuntua" id="titpuntua">¡Puntuá esta imagen!</label>
               <div id="p">
-                <select className="ingresar" name="puntuacion" id="puntuacion" defaultValue="puntuacion" >
-                  <option value="puntuacion" disabled>Tu puntuación</option>
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                  <option value="4">4</option>
-                  <option value="5">5</option>
-                  <option value="6">6</option>
-                  <option value="7">7</option>
-                  <option value="8">8</option>
-                  <option value="9">9</option>
-                  <option value="10">10</option>
-                </select>
+                <input className="ingresar" name="puntuacion" id="puntuacion" type="number" min="1" max="10" placeholder="Tu puntuación(0-10)" />
                 <button className="botones" type="submit" id="puntuar" onClick={this.puntuar}>Puntuar</button>
               </div>
             </div>
           </div>
         </div>
-      </div>
+      </>
     );
   }
 }
