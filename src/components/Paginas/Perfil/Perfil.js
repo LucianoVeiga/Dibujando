@@ -8,10 +8,18 @@ import './Perfil.css';
 import '../../../App.scss';
 
 const usuarios = firestore.collection('Usuarios');
-const publicaciones = firestore.collection('Publicaciones');
 
 class Perfil extends React.Component {
 
+  constructor(props) {
+    super(props);
+    this.handleUpdate = this.handleUpdate.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
+    this.state = {
+      usuario: ''
+    }
+  }
+  
   pnombre;
   papellido;
   ppais;
@@ -23,6 +31,7 @@ class Perfil extends React.Component {
     usuarios.doc(app.auth().currentUser.uid).get().then(doc =>{
       this.pnombre = doc.data().nombre;
       this.papellido = doc.data().apellido;
+      this.setState({usuario: doc.data().nombre + " " + doc.data().apellido});
       this.ppais = doc.data().pais;
       this.pnacimiento = doc.data().nacimiento;
       this.psexo = doc.data().sexo;
@@ -30,34 +39,24 @@ class Perfil extends React.Component {
     })
   }
 
-  handleUpdate = () => {
+  handleUpdate() {
     usuarios.doc(app.auth().currentUser.uid).get().then(doc =>{
-      doc.update({
-        nombre: document.getElementById('nombre'),
-        apellido: document.getElementById('apellido'),
-        pais: document.getElementById('pais'),
-        nacimiento: document.getElementById('nacimiento'),
-        sexo: document.getElementById('sexo'),
-        email: document.getElementById('email')
+      usuarios.doc(app.auth().currentUser.uid).update({
+        nombre: document.getElementById('nombre').value,
+        apellido: document.getElementById('apellido').value,
+        pais: document.getElementById('pais').value,
+        nacimiento: document.getElementById('nacimiento').value,
+        sexo: document.getElementById('sexo').value,
+        email: document.getElementById('email').value
       })
     })
-    console.log(document.getElementById('email'));
-    app.auth().currentUser.updateEmail(document.getElementById('email'));
+    app.auth().currentUser.updateEmail(document.getElementById('email').value);
     console.log('¡Actualizado!');
   }
 
-  handleDelete = () => {
-    usuarios.doc(app.auth().currentUser.uid).delete();
-    publicaciones
-      .get()
-      .then(snapshot => {
-        snapshot.forEach(doc => {
-          if(doc.data().usuario === this.pnombre) {
-            doc.delete();
-          }
-        })
-      })
+  handleDelete() {
     app.auth().currentUser.delete();
+    usuarios.doc(app.auth().currentUser.uid).delete();
     console.log('¡Eliminado!');
   }
   
@@ -78,48 +77,48 @@ class Perfil extends React.Component {
                 <label className="subtitulo">Personalizá la información de tu perfil acá.</label>
               </div>
               <br />
-              <form>
-                <div>
-                  <label>Nombre</label>
-                  <input type="input" className="ingresar" value={this.pnombre} id='nombre' name="nombre" />
-                </div>
-                <br />
-                <div>
-                  <label>Apellido</label>
-                  <input type="input" className="ingresar" value={this.papellido} id='apellido' name="apellido" />
-                </div>
-                <br />
-                <div>
-                  <label>Email</label>
-                  <input type="input" className="ingresar" value={this.pemail} id='email' name="email" />
-                </div>
-                <br />
-                <div>
-                  <label>País</label>
-                  <input type="input" className="ingresar" value={this.ppais} id='pais' name="pais" />
-                </div>
-                <br />
-                <div>
-                  <label>Fecha de nacimiento</label>
-                  <input type="input" className="ingresar" value={this.pnacimiento} id='nacimiento' name="nacimiento" />
-                </div>
-                <br />
-                <div>
-                  <label>Sexo</label>
-                  <select className="ingresar" name="sexo" id="sexo" defaultValue={this.psexo} >
-                    <option value={this.psexo} disabled>Sexo</option>
-                    <option value="Hombre">Hombre</option>
-                    <option value="Mujer">Mujer</option>
-                  </select>
-                </div>
-                <br />
-                <div id="guardado">
-                  <button className="botones" type="submit" onClick={(this.handleUpdate)}>Guardar</button>
-                </div>
-              </form>
+              <div>
+                <label>Nombre</label>
+                <input type="input" className="ingresar" defaultValue={this.pnombre} id='nombre' name="nombre" />
+              </div>
+              <br />
+              <div>
+                <label>Apellido</label>
+                <input type="input" className="ingresar" defaultValue={this.papellido} id='apellido' name="apellido" />
+              </div>
+              <br />
+              <div>
+                <label>Email</label>
+                <input type="input" className="ingresar" defaultValue={this.pemail} id='email' name="email" />
+              </div>
+              <br />
+              <div>
+                <label>País</label>
+                <input type="input" className="ingresar" defaultValue={this.ppais} id='pais' name="pais" />
+              </div>
+              <br />
+              <div>
+                <label>Fecha de nacimiento</label>
+                <input type="input" className="ingresar" defaultValue={this.pnacimiento} id='nacimiento' name="nacimiento" />
+              </div>
+              <br />
+              <div>
+                <label>Sexo</label>
+                <select className="ingresar" name="sexo" id="sexo" defaultValue={this.psexo} >
+                  <option value={this.psexo} disabled>Sexo</option>
+                  <option value="Hombre">Hombre</option>
+                  <option value="Mujer">Mujer</option>
+                </select>
+              </div>
+              <br />
+              <div id="guardado">
+                <button className="botones" onClick={(this.handleUpdate)}>Guardar</button>
+              </div>
               <div id="otros">
                 <button className="botones" id="logout" onClick={() => app.auth().signOut()}>Logout</button>
-                <button className="botones" id="borrar" onClick={(this.handleDelete)}>Borrar Cuenta</button>
+                <div>
+                  <button className="botones" id="borrar" onClick={(this.handleDelete)}>Borrar Cuenta</button>
+                </div>
               </div>
             </div>
           </div>
