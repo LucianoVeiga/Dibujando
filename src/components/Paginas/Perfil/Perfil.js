@@ -15,9 +15,6 @@ class Perfil extends React.Component {
     super(props);
     this.handleUpdate = this.handleUpdate.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
-    this.state = {
-      usuario: ''
-    }
   }
   
   pnombre;
@@ -31,7 +28,6 @@ class Perfil extends React.Component {
     usuarios.doc(app.auth().currentUser.uid).get().then(doc =>{
       this.pnombre = doc.data().nombre;
       this.papellido = doc.data().apellido;
-      this.setState({usuario: doc.data().nombre + " " + doc.data().apellido});
       this.ppais = doc.data().pais;
       this.pnacimiento = doc.data().nacimiento;
       this.psexo = doc.data().sexo;
