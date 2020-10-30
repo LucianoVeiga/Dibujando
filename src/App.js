@@ -27,6 +27,7 @@ function App() {
             <PrivateRoute path="/categories" component={Categorias} />
             <PrivateRoute path="/profile" component={Perfil}/>
             <PrivateRoute path="/" exact component={Inicio} />
+            <PrivateRoute path="/Dibujando" exact component={Inicio} />
             <Route path="*" component={PageNotFound} />
         </Switch>
       </Router>
