@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "/Dibujando/static/css/main.729353f4.chunk.css",
+    "main.js": "/Dibujando/static/js/main.7007fed9.chunk.js",
+    "main.js.map": "/Dibujando/static/js/main.7007fed9.chunk.js.map",
+    "runtime-main.js": "/Dibujando/static/js/runtime-main.54524b07.js",
+    "runtime-main.js.map": "/Dibujando/static/js/runtime-main.54524b07.js.map",
+    "static/js/2.89eb39ac.chunk.js": "/Dibujando/static/js/2.89eb39ac.chunk.js",
+    "static/js/2.89eb39ac.chunk.js.map": "/Dibujando/static/js/2.89eb39ac.chunk.js.map",
+    "index.html": "/Dibujando/index.html",
+    "static/css/main.729353f4.chunk.css.map": "/Dibujando/static/css/main.729353f4.chunk.css.map",
+    "static/js/2.89eb39ac.chunk.js.LICENSE.txt": "/Dibujando/static/js/2.89eb39ac.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.54524b07.js",
+    "static/js/2.89eb39ac.chunk.js",
+    "static/css/main.729353f4.chunk.css",
+    "static/js/main.7007fed9.chunk.js"
+  ]
+}
