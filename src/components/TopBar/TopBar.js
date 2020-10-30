@@ -1,8 +1,11 @@
 import React from 'react';
+import { firestore } from '../../base.js';
 import app from '../../base';
 
 import './TopBar.css';
 import '../../App.scss';
+
+const usuarios = firestore.collection("Usuarios");
 
 class TopBar extends React.Component {
 
