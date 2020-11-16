@@ -27,6 +27,7 @@ class Publicacion extends React.Component {
   pubimagen;
   pubfecha;
   id;
+  pubIaCalif;
   
   componentDidMount() {
     const urlParams = new URLSearchParams(this.props.location.search);
@@ -43,6 +44,7 @@ class Publicacion extends React.Component {
       this.pubvotantes = doc.data().votantes;
       this.pubcantvotantes = doc.data().cantidadVotantes;
       this.pubfecha = doc.data().fecha;
+      this.pubIaCalif = doc.data().iaCalif;
       this.setState({});
       for(let i = 0; i < this.pubcantvotantes; i ++) {
         console.log(this.pubvotantes[i]);
@@ -102,6 +104,7 @@ class Publicacion extends React.Component {
                   <span>{this.pubfecha}</span>
                 </div>
                 <div id="puntaje">
+                  <span>Esta imagen tiene una calificación de {this.pubIaCalif} según nuestro dibujante artificial</span>
                   <span>{this.pubpuntuacion} calificación promedio de {this.pubcantvotantes} votantes</span>
                 </div>
               </div>
