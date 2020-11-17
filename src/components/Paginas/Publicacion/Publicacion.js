@@ -106,6 +106,7 @@ class Publicacion extends React.Component {
                 <div id="puntaje">
                   <span>Esta imagen tiene una calificación de {this.pubIaCalif} según nuestro dibujante artificial</span>
                   <br />
+                  <br />
                   <span>{this.pubpuntuacion} calificación promedio de {this.pubcantvotantes} votantes</span>
                 </div>
               </div>
