@@ -27,7 +27,7 @@ class Publicacion extends React.Component {
   pubimagen;
   pubfecha;
   id;
-  pubIaCalif;
+  pubIaCalif = 0;
   
   componentDidMount() {
     const urlParams = new URLSearchParams(this.props.location.search);
