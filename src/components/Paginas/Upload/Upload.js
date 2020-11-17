@@ -88,7 +88,7 @@ const Upload = () => {
                     <label id="titulo">Imagen</label>
                     <br />
                     <input id="botonreal" name="botonreal" type="file" hidden="hidden" onChange={handleChange} />
-                    <button id="botonfalso" className="botones" onClick={clickReal}><img src="Images/Upload.png" alt="logo" id="upload"></img></button>
+                    <button id="botonfalso" className="botones" onClick={clickReal}><img src="https://firebasestorage.googleapis.com/v0/b/dibujando-9b19b.appspot.com/o/icons%2FUpload.png?alt=media&token=3d936852-afd2-4b68-af9a-fa0a5a6f6779" alt="logo" id="upload"></img></button>
                     <br />
                   </div>
                   <div id="descripcion">
