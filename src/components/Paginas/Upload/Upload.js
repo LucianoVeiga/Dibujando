@@ -56,7 +56,8 @@ const Upload = () => {
                   puntuacion: 0,
                   votantes: [],
                   cantidadVotantes: 0,
-                  fecha: fecha
+                  fecha: fecha,
+                  iaCalif: 0
                 })
                 .then(docRef => {
                   history.push('/publications/?id=' + docRef.id);
