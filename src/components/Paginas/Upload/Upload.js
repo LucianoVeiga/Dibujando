@@ -60,6 +60,11 @@ const Upload = () => {
                   iaCalif: 0
                 })
                 .then(docRef => {
+                  const spawn = require('child_process').spawn;
+                  const process = spawn('python', ['./calific.py']);
+                  process.stdout.on('data', (data) => {
+                    console.log('Calificado');
+                  });
                   history.push('/publications/?id=' + docRef.id);
               });
             }
