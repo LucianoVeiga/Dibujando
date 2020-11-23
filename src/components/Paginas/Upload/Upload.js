@@ -65,7 +65,9 @@ const Upload = () => {
                   process.stdout.on('data', (data) => {
                     console.log('Calificado');
                   });
-                  history.push('/publications/?id=' + docRef.id);
+                  setTimeout(function () {
+                    history.push('/publications/?id=' + docRef.id);
+                  }, 2000))
               });
             }
           });
