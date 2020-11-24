@@ -61,7 +61,7 @@ const Upload = () => {
                 })
                 .then(docRef => {
                   const spawn = require('child_process').spawn;
-                  const process = spawn('python', ['./calific.py']);
+                  const process = spawn('python', ['./computer-vision/calific.py']);
                   process.stdout.on('data', (data) => {
                     console.log('Calificado');
                   });
